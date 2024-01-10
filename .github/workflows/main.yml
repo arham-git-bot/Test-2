@@ -19,11 +19,11 @@ jobs:
           git clone https://github.com/arham-git-bot/Test-3.git
           git pull
           cd Test-3
+          cd hello.txt
           
 
       - name: Update File
         run: |
-          file_path="./hello.txt"
           current_count=$(awk '/my commit count is/ {print $5}' $file_path)
           new_count=$((current_count + 50))
           sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" $file_path
