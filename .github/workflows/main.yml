@@ -16,4 +16,16 @@ jobs:
           ref: uat
 
       - name: Update File
-        
+        run: |
+          file_path="../hello.txt"
+          commit_count=$(grep -oP 'my commit count is : \K\d+' $file_path)
+          new_count=$((commit_count + 50))
+          sed -i "s/my commit count is : $commit_count/my commit count is : $new_count/" $file_path
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "arham-git-bot"
+          git config user.email "arhamsangoi07@gmail.com"
+          git add .
+          git commit -m "Increment commit count"
+          git push
