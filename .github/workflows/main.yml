@@ -1,31 +1,31 @@
-name: update a file in another repo
+name: Update File on UAT Branch Commit
 
 on:
   push:
-    branches: ['main']
- 
+    branches:
+      - uat
+
 jobs:
-  build:
+  update-file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Repository 2
+        uses: actions/checkout@v2
         with:
           repository: arham-git-bot/Test-3
-          ref: main
+          path: repo2
 
       - name: Update File
         run: |
-          file_path="hello.txt"
-          commit_count=$(grep -oP 'my commit count is : \K\d+' $file_path)
-          new_count=$((commit_count + 50))
-          sed -i "s/my commit count is : $commit_count/my commit count is : $new_count/" $file_path
+          current_count=$(awk '/my commit count is/ {print $5}' repo2/yourfile.txt)
+          new_count=$((current_count + 50))
+          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" repo2/yourfile.txt
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.email "arhamsangoi07@gmail.com
-          git config --global user.name "arham-git-bot"
-          git add ./hello.txt
-          git commit -m "Increment count"
+          git config --global user.name 'arham-git-bot'
+          git config --global user.email 'arhamsangoi07@gmail.com'
+          git add .
+          git commit -m "Update commit count [skip ci]"
           git push
