@@ -24,8 +24,8 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config user.name "arham-git-bot"
-          git config user.email "arhamsangoi07@gmail.com"
+          git config --global user.email "arhamsangoi07@gmail.com
+          git config --global user.name "arham-git-bot"
           git add .
-          git commit -m "Increment commit count"
+          git commit -m "update file"
           git push
