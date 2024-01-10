@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          repository: arham-git-bot/Test-3
+          repository: arham-git-bot/Test-2
           ref: main
 
       - name: Update File
