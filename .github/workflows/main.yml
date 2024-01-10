@@ -14,13 +14,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: arham-git-bot/Test-3
-          path: repo2
+          
 
       - name: Update File
         run: |
+          file_path="/hello.txt"
           current_count=$(awk '/my commit count is/ {print $5}' repo2/yourfile.txt)
           new_count=$((current_count + 50))
-          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" Test-3/hello.txt
+          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" $file_path
 
       - name: Commit and Push Changes
         run: |
