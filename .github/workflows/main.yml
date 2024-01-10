@@ -1,0 +1,19 @@
+name: update a file in another repo
+
+on:
+  push:
+    branches: ['main']
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: arham-git-bot/Test-3
+          ref: uat
+
+      - name: Update File
+        
