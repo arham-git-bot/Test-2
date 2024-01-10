@@ -26,6 +26,6 @@ jobs:
         run: |
           git config --global user.email "arhamsangoi07@gmail.com
           git config --global user.name "arham-git-bot"
-          git add .
-          git commit -m "update file"
-          git push -u origin main
+          git add .hello.txt
+          git commit -m "Increment count"
+          git push
