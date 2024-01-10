@@ -17,7 +17,7 @@ jobs:
 
       - name: Update File
         run: |
-          file_path="../hello.txt"
+          file_path="./hello.txt"
           commit_count=$(grep -oP 'my commit count is : \K\d+' $file_path)
           new_count=$((commit_count + 50))
           sed -i "s/my commit count is : $commit_count/my commit count is : $new_count/" $file_path
