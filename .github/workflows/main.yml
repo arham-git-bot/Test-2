@@ -28,4 +28,4 @@ jobs:
           git config --global user.name "arham-git-bot"
           git add .
           git commit -m "update file"
-          git push
+          git push -u origin main
