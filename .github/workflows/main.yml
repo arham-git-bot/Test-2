@@ -19,7 +19,7 @@ jobs:
       - name: Update File
         run: |
           file_path="/hello.txt"
-          current_count=$(awk '/my commit count is/ {print $5}' repo2/yourfile.txt)
+          current_count=$(awk '/my commit count is/ {print $5}' $file_path)
           new_count=$((current_count + 50))
           sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" $file_path
 
