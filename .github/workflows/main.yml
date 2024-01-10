@@ -3,7 +3,7 @@ name: Update File on UAT Branch Commit
 on:
   push:
     branches:
-      - uat
+      - main
 
 jobs:
   update-file:
