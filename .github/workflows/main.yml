@@ -19,7 +19,14 @@ jobs:
         run: |
           git config --global user.email "arhamsangoi07@wohlig.com"
           git config --global user.name "arham-git-bot"
-        
+
+      - name: Check File Existence
+        run: |
+          if [ ! -f Test-3/blob/main/hello.txt ]; then
+           echo "Error: File not found."
+           exit 1
+          fi
+
       - name: Update File
         run: |
           current_count=$(awk '/my commit count is/ {print $5}' Test-3/blob/main/hello.txt)
