@@ -18,9 +18,9 @@ jobs:
 
       - name: Update File
         run: |
-          current_count=$(awk '/my commit count is/ {print $5}' repoB/yourfile.txt)
+          current_count=$(awk '/my commit count is/ {print $5}' Test-3/hello.txt)
           new_count=$((current_count + 1))
-          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" repoB/yourfile.txt
+          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" Test-3/hello.txt
 
       - name: Commit and Push Changes
         run: |
