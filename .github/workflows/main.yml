@@ -10,17 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository B
-        uses: actions/checkout@v2
-        with:
-          repository: arham-git-bot/Test-3
-          path: repoB
+      - name: checkout test-commits
+        uses: actions/checkout@v3
+      - name: checkout test-gitops
+        run:  git clone https://github.com/arham-git-bot/Test-3.git
 
+      - name: configure git
+        run: |
+          git config --global user.email "arhamsangoi07@wohlig.com"
+          git config --global user.name "arham-git-bot"
+        
       - name: Update File
         run: |
-          current_count=$(awk '/my commit count is/ {print $5}' @github.com/arham-git-bot/Test-3/blob/main/hello.txt)
+          current_count=$(awk '/my commit count is/ {print $5}' Test-3/blob/main/hello.txt)
           new_count=$((current_count + 1))
-          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" @github.com/arham-git-bot/Test-3/blob/main/hello.txt
+          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" Test-3/blob/main/hello.txt
 
       - name: Commit and Push Changes
         run: |
