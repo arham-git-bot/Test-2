@@ -1,4 +1,4 @@
-name: Update File on UAT Branch Commit
+name: Update File on Main Branch Commit
 
 on:
   push:
@@ -10,27 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository 2
+      - name: Checkout Repository B
         uses: actions/checkout@v2
-      - name : cloning
-        run: |
-          git config --global user.name 'arham-git-bot'
-          git config --global user.email 'arhamsangoi07@gmail.com'
-          git clone https://github.com/arham-git-bot/Test-3.git
-          git pull
-          cd Test-3
-          cd hello.txt
-          
+        with:
+          repository: arham-git-bot/Test-3
+          path: repoB
 
       - name: Update File
         run: |
-          current_count=$(awk '/my commit count is/ {print $5}' $file_path)
-          new_count=$((current_count + 50))
-          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" $file_path
+          current_count=$(awk '/my commit count is/ {print $5}' repoB/yourfile.txt)
+          new_count=$((current_count + 1))
+          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" repoB/yourfile.txt
 
       - name: Commit and Push Changes
         run: |
-         
+          git config --global user.name 'arham-git-bot'
+          git config --global user.email 'arhamsangoi07@gmail.com'
           git add .
           git commit -m "Update commit count [skip ci]"
           git push
