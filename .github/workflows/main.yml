@@ -12,31 +12,19 @@ jobs:
     steps:
       - name: checkout test-commits
         uses: actions/checkout@v3
-      - name: checkout test-gitops
-        run:  git clone https://github.com/arham-git-bot/Test-3.git
-
-      - name: configure git
+      - name: commit
         run: |
+          git clone https://github.com/arham-git-bot/Test-3.git
+          cd Test-3
           git config --global user.email "arhamsangoi07@gmail.com"
           git config --global user.name "arham-git-bot"
-
-      - name: Check File Existence
-        run: |
-          if [ ! -f Test-3/blob/main/hello.txt ]; then
-           echo "Error: File not found."
-           exit 1
-          fi
-
-      - name: Update File
-        run: |
-          current_count=$(awk '/my commit count is/ {print $5}' Test-3/blob/main/hello.txt)
-          new_count=$((current_count + 1))
-          sed -i "s/my commit count is : $current_count/my commit count is : $new_count/" Test-3/blob/main/hello.txt
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name 'arham-git-bot'
-          git config --global user.email 'arhamsangoi07@gmail.com'
+          cat hello.txt
+          commit_count=$(grep -oP '(?<=commit count is : )\d+' test.txt)
+          new_commit_count=$((commit_count + 50))
+          sed -i "s/commit count is : $commit_count/commit count is : $new_commit_count/" test.txt
+          echo "Commit count updated to: $new_commit_count"
+          cat hello.txt
           git add .
-          git commit -m "Update commit count [skip ci]"
-          git push
+          git remote set-url origin https://github.com/arham-git-bot/Test-3.git
+          git commit -m "test"
+          git push --set-upstream origin main
