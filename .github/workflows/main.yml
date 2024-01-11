@@ -25,6 +25,6 @@ jobs:
           echo "Commit count updated to: $new_commit_count"
           cat hello.txt
           git add .
-         
+          git remote set-url origin https://github.com/arham-git-bot/Test-3.git
           git commit -m "test"
           git push origin main
