@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
 jobs:
   update-file:
     runs-on: ubuntu-latest
@@ -14,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
       - name: commit
         run: |
-          git clone https://github.com/arham-git-bot/Test-3.git
+          git clone https://arham-git-bot:${{ secrets.TOKEN }}@github.com/arham-git-bot/Test-3.git
           cd Test-3
           git config --global user.email "arhamsangoi07@gmail.com"
           git config --global user.name "arham-git-bot"
@@ -25,6 +28,6 @@ jobs:
           echo "Commit count updated to: $new_commit_count"
           cat hello.txt
           git add .
-          git remote set-url origin https://github.com/arham-git-bot/Test-3.git
+          git remote set-url origin https://arham-git-bot:${{ secrets.TOKEN }}@github.com/arham-git-bot/Test-3.git
           git commit -m "test"
           git push origin main
